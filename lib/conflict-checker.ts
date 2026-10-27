@@ -1,0 +1,3 @@
+export type Slot = { horaInicio:number; horaFim:number; sala?:string; professor?:string; socioeducandos?:string[] };
+export function overlaps(a:Slot,b:Slot){return a.horaInicio < b.horaFim && b.horaInicio < a.horaFim}
+export function findConflicts(slots:Slot[]){const conflicts:string[]=[]; slots.forEach((a,i)=>slots.slice(i+1).forEach((b,j)=>{if(!overlaps(a,b))return; if(a.sala&&a.sala===b.sala) conflicts.push(`sala:${i}-${i+j+1}`); if(a.professor&&a.professor===b.professor) conflicts.push(`professor:${i}-${i+j+1}`); const shared=a.socioeducandos?.filter(x=>b.socioeducandos?.includes(x)); if(shared?.length) conflicts.push(`socioeducando:${shared.join(',')}`)})); return conflicts}

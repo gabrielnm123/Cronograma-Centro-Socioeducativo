@@ -1,0 +1,7 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "sqlite" url = env("DATABASE_URL") }
+model UnidadeSocioeducativa { id String @id @default(cuid()); nome String; sigla String @unique; turnos CronogramaTurno[]; socioeducandos Socioeducando[] }
+model CronogramaTurno { id String @id @default(cuid()); nome String; unidadeId String; unidade UnidadeSocioeducativa @relation(fields:[unidadeId],references:[id]); areas AreaAtividade[]; data DateTime @default(now()) }
+model AreaAtividade { id String @id @default(cuid()); nome String; turnoId String; turno CronogramaTurno @relation(fields:[turnoId],references:[id]); colunas ColunaTurma[] }
+model ColunaTurma { id String @id @default(cuid()); nome String; horaInicio Int; horaFim Int; sala String; professor String; areaId String; area AreaAtividade @relation(fields:[areaId],references:[id]); @@index([horaInicio,horaFim]) }
+model Socioeducando { id String @id @default(cuid()); nome String; turma String; unidadeId String; unidade UnidadeSocioeducativa @relation(fields:[unidadeId],references:[id]) }
