@@ -9,7 +9,10 @@
 ## Etapa 2: Banco PostgreSQL, multi-unidades e horários
 - [x] Configurar Prisma com `UnidadeSocioeducativa`, `CronogramaTurno`, `AreaAtividade`, `ColunaTurma` e `Socioeducando`.
 - [x] Adicionar `horaInicio` e `horaFim` em minutos.
-- [ ] Executar `prisma migrate dev` contra PostgreSQL disponível.
+- [ ] Executar `prisma migrate dev` contra PostgreSQL disponível (schema atualizado com alocações).
+- [x] Fluxo de gestão com seletores de unidade, turnos, áreas, turmas, socioeducandos e alocações.
+- [x] Isolamento por unidade e validação de conflito de alocação por intervalo.
+- [x] Exportação Word baseada nos dados persistidos, com listas verticais de socioeducandos.
 - [x] Criar `prisma/seed.ts` com dados de teste.
 - [x] Registrar commit da modelagem multi-unidade.
 

@@ -36,6 +36,7 @@ model ColunaTurma {
  professor String
  areaId String
  area AreaAtividade @relation(fields: [areaId], references: [id])
+  alocacoes Alocacao[]
  @@index([horaInicio, horaFim])
 }
 model Socioeducando {
@@ -44,4 +45,13 @@ model Socioeducando {
  turma String
  unidadeId String
  unidade UnidadeSocioeducativa @relation(fields: [unidadeId], references: [id])
+  alocacoes Alocacao[]
+}
+model Alocacao {
+ id String @id @default(cuid())
+ turmaId String
+ socioeducandoId String
+ turma ColunaTurma @relation(fields: [turmaId], references: [id], onDelete: Cascade)
+ socioeducando Socioeducando @relation(fields: [socioeducandoId], references: [id], onDelete: Cascade)
+ @@unique([turmaId, socioeducandoId])
 }
