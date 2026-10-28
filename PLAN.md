@@ -9,7 +9,8 @@
 ## Etapa 2: Banco PostgreSQL, multi-unidades e horários
 - [x] Configurar Prisma com `UnidadeSocioeducativa`, `CronogramaTurno`, `AreaAtividade`, `ColunaTurma` e `Socioeducando`.
 - [x] Adicionar `horaInicio` e `horaFim` em minutos.
-- [ ] Executar `prisma migrate dev` contra PostgreSQL disponível (schema atualizado com alocações).
+- [x] Configurar PostgreSQL local via `docker-compose.yml`.
+- [ ] Executar `prisma migrate dev` e seed: bloqueado por PostgreSQL já ocupando `localhost:5432` com credenciais desconhecidas.
 - [x] Fluxo de gestão com seletores de unidade, turnos, áreas, turmas, socioeducandos e alocações.
 - [x] Isolamento por unidade e validação de conflito de alocação por intervalo.
 - [x] Exportação Word baseada nos dados persistidos, com listas verticais de socioeducandos.
@@ -34,5 +35,6 @@
 
 ## Estado da execução
 - Validados: `npx prisma generate`, `npm run typecheck` e `npm run build`.
-- Pendências: migration/seed contra PostgreSQL disponível, dados reais no exportador e Server Actions de mutação.
+- Banco local: compose preparado para PostgreSQL 16 em `localhost:5432`, mas não iniciado porque a porta já está ocupada.
+- Pendências: migration/seed após obter acesso ao PostgreSQL da porta 5432, dados reais no exportador e Server Actions de mutação.
 - Regra operacional: atualizar este arquivo ao concluir cada etapa.
