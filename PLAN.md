@@ -10,7 +10,7 @@
 - [x] Configurar Prisma com `UnidadeSocioeducativa`, `CronogramaTurno`, `AreaAtividade`, `ColunaTurma` e `Socioeducando`.
 - [x] Adicionar `horaInicio` e `horaFim` em minutos.
 - [x] Configurar PostgreSQL local via `docker-compose.yml`.
-- [ ] Executar `prisma migrate dev` e seed: bloqueado por PostgreSQL já ocupando `localhost:5432` com credenciais desconhecidas.
+- [x] Configurar `.env` local e sincronizar o schema/seed no PostgreSQL existente em `localhost:5433`.
 - [x] Fluxo de gestão com seletores de unidade, turnos, áreas, turmas, socioeducandos e alocações.
 - [x] Isolamento por unidade e validação de conflito de alocação por intervalo.
 - [x] Exportação Word baseada nos dados persistidos, com listas verticais de socioeducandos.
@@ -30,11 +30,11 @@
 
 ## Etapa 5: Gestão diária
 - [x] Criar `app/gestao-diaria/page.tsx` para movimentação entre turmas/blocos.
-- [ ] Conectar mutações a Server Actions e persistência real.
-- [ ] Registrar commit específico da integração da gestão diária.
+- [x] Conectar mutações a Server Actions e persistência real.
+- [x] Registrar commit específico da integração da gestão diária.
 
 ## Estado da execução
 - Validados: `npx prisma generate`, `npm run typecheck` e `npm run build`.
-- Banco local: compose preparado para PostgreSQL 16 em `localhost:5432`, mas não iniciado porque a porta já está ocupada.
-- Pendências: migration/seed após obter acesso ao PostgreSQL da porta 5432, dados reais no exportador e Server Actions de mutação.
+- Banco local: PostgreSQL existente validado em `localhost:5433`, banco `cronograma_cscal`; `prisma db push` e seed executados.
+- Pendência: criar migration versionada quando o fluxo interativo do Prisma estiver disponível.
 - Regra operacional: atualizar este arquivo ao concluir cada etapa.
